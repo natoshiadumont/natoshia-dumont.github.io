@@ -21,13 +21,21 @@
 
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
+    //assign var revInput the value of an empty string
+    var revInput = '';
+//with the use of the .split() method, turn the input's string into an array of its elements.
+input = input.split('');
+    //create a for loop that iterates through the new input array in reverse by decrementing the var i (i--)
+    for (var i = input.length - 1; i >= 0; i--) {
+    revInput += input[i];
+    }
+    return revInput;
     
     
     // YOUR CODE GOES ABOVE HERE //
 }
 
+console.log (reverseString('cat')); //should print 'tac'
 
 
 
