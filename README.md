@@ -13,6 +13,6 @@
 5) Reopen terminal
 6) in terminal => sudo apt-get install subversion
 7) in terminal => npm install -g opspark
-8) in terminal => os install
-**os test => to to test your code using the opspark tool (Command + C to exit testing)
-**os submit => submit your code to greenlight (check your progress on greenlight)
+8) in terminal =>   ** os install (to install a new project into the workspace)
+                    **os test => to test your code using the opspark tool (Command + C to exit testing)
+                    **os submit => submit your code to greenlight (check your progress on greenlight)

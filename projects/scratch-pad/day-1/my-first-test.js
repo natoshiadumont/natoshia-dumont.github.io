@@ -17,12 +17,13 @@
  */
 function print(value) {
   // YOUR CODE BELOW HERE //
-  
-  
+  //function must log the parameter values
+console.log(value);  
   
   // YOUR CODE ABOVE HERE //
 }
-
+//envoke print function to log string 'this function prints values'
+print(15); //should log the value 15
 
 
 
