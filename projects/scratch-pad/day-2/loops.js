@@ -13,7 +13,9 @@
 function printArrayValues(array) {
   // YOUR CODE BELOW HERE //
   
-  
+  //use for in loop to loop over array values an print to the console
+  for (var i = 0; i < array.length; i++)
+  console.log(array[i]);
   
   
   // YOUR CODE ABOVE HERE //
@@ -25,7 +27,10 @@ function printArrayValues(array) {
  */
 function printArrayValuesInReverse(array) {
   // YOUR CODE BELOW HERE //
-  
+  //using for loop, print array values backwards by decrementing value of i
+  for (var i = array.length -1; i >= 0; i--) {
+    console.log(array[i]);
+}
   
   
   
@@ -37,8 +42,14 @@ function printArrayValuesInReverse(array) {
  */
 function getObjectKeys(object) {
   // YOUR CODE BELOW HERE //
-  
-  
+  // assign an empty to a variable named newArray
+  var newArray = [];
+  //using a for in loop to iterate through the keys in the object
+  for (var key in object) {
+  newArray.push(key);
+  } 
+  //return newArray
+  return newArray;
   
   
   // YOUR CODE ABOVE HERE //
@@ -50,7 +61,11 @@ function getObjectKeys(object) {
  */
 function printObjectKeys(object) {
   // YOUR CODE BELOW HERE //
-  
+  //
+  //use a for in loop and print keys of the object
+ for (var key in object) {
+   console.log(key);
+ }
   
   
   
@@ -62,9 +77,14 @@ function printObjectKeys(object) {
  */
 function getObjectValues(object) {
   // YOUR CODE BELOW HERE //
-  
-  
-  
+  //assign an empty array to variable Array
+  var myArr = [];
+  //using a for in loop, print the key values of the object
+  for (var key in object) {
+    myArr.push(object[key]);
+  }
+  //return Array
+  return myArr;
   
   // YOUR CODE ABOVE HERE //
 }
@@ -75,8 +95,10 @@ function getObjectValues(object) {
  */
 function printObjectValues(object) {
   // YOUR CODE BELOW HERE //
-  
-  
+  //using a for in loop, print the object's values
+  for (var key in object) {
+    console.log(object[key])
+  }
   
   
   // YOUR CODE ABOVE HERE //
@@ -87,8 +109,14 @@ function printObjectValues(object) {
  */
 function getObjectLength(object) {
   // YOUR CODE BELOW HERE //
-  
-  
+  // assign an empty array to var empty
+  var objArray = [];
+  //using a for in loop, iterate through all key value pairs
+  for (var key in object) {
+    objArray.push(object[key]);
+  }
+  //return the objArray length to the function
+  return objArray.length;
   
   
   // YOUR CODE ABOVE HERE //
@@ -100,10 +128,18 @@ function getObjectLength(object) {
  */
 function printObjectValuesInReverse(object) {
   // YOUR CODE BELOW HERE //
-  
-  
-  
-  
+//create an empty array named emtpyArr
+var newArr = [];
+//use a for in loop to push object values into emptyArr
+for (var key in object) {
+  newArr.push(object[key]);
+}
+
+//create empty array named empArr
+//use a for loop to iterate through emptyArr and assign values in reverse by decrementing
+for (var i = newArr.length - 1; i >= 0; i--) {
+console.log(newArr[i]);
+}
   // YOUR CODE ABOVE HERE //
 }
 

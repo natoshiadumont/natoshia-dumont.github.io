@@ -13,7 +13,26 @@
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
 
-
+//create a for loop that iterates through the numbers 1-100
+for (var i = 1; i <= 100; i++) {
+    
+/*
+wihtin the for loop create the following conditional statments:
+-if i % 3  && i % 5 === 0, push string 'FizzBuzz' into numsArr
+-else if i % 5 === 0, push string 'Buzz'
+-else  if % 3 equals 0, push string 'Fizz' into numsArr
+-else, push value of i into nums Arr
+*/
+if (i % 5 === 0 && i % 3 === 0) {
+    console.log('FizzBuzz');
+} else if (i % 3 === 0) {
+    console.log('Fizz');
+} else if (i % 5 === 0) {
+    console.log('Buzz');
+} else {
+    console.log(i);
+}
+}
 
     // YOUR CODE GOES ABOVE HERE //
 }
