@@ -11,15 +11,28 @@
  * return a Function that tests whether a given value is greater than the 
  * base.
  */
+
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+//filter out values that are not strings or numbers
+if (typeof base === 'string' || typeof base === 'number') {
+//return a function that test if base is greater than the test
+return function greaterThan(test) {
+
+if (typeof test === 'string' || typeof test === 'number') {
+
+  /*if test parameter is greater than base,
+   return a funciton named greaterThan that test whether 
+   the given number is greater than the base value*/ 
+  return test > base;
+}
+}
 }
 
+    // YOUR CODE ABOVE HERE //
+}
+var testing = createGreaterThanFilter(10); //will give the function a value of 10
+console.log(testing(6)); //should return false
 /** 
  * Given an input base to test against, which could be a String or Number, 
  * return a Function that tests whether a given value is less than the 
@@ -27,10 +40,12 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+if (typeof base === 'number' || typeof base === 'string') {
+    return function lessThan(test){
+        if (typeof test === 'number' || typeof test === 'string')
+        return test < base;
+    }
+}
     // YOUR CODE ABOVE HERE //
 }
 
@@ -41,12 +56,21 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+if (typeof startsWith === 'string' && startsWith.length === 1 ) {
+    return function testFirstChar(testString){
+if (typeof testString === 'string') {
+         return (startsWith === testString[0]);
+}
+}
+}
     
     // YOUR CODE ABOVE HERE //
 }
+var test2 = createStartsWithFilter('l');
+console.log(test2('apple'));
+console.log(test2('lemon'));
+console.log(test2('lx57bzw'));
+
 
 /** 
  * Given a endsWith character, which will be a single character, return a 

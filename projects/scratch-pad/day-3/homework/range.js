@@ -23,13 +23,29 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
-    
+//declare an output variable assigned to an array literal
+
+if (typeof start === 'number' && typeof end === 'number') {
+//create a conditional statement that start is less than end push iterated integers into the array
+var myArr = [];
+if (start < end) {
+    var output = [];
+    for (var i = start; i <= end; i++) {
+       myArr = output.push(i);
+       } return myArr = output;
+
+//create a conditonal statment that if start is greater than end, push REVERSED iterated interger
+} else {
+ var output = [];
+     for (var i = start; i >= end; i--) {
+        myArr += output.push(i);
+} return myArr = output;
+}
+}
     // YOUR CODE GOES ABOVE HERE //
 }
-
+//console.log(range(10, 1));
+//console.log(range(1, 10));
 
 
 
