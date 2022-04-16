@@ -56,12 +56,8 @@ if (typeof base === 'number' || typeof base === 'string') {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-if (typeof startsWith === 'string' && startsWith.length === 1 ) {
-    return function testFirstChar(testString){
-if (typeof testString === 'string') {
-         return (startsWith === testString[0]);
-}
-}
+    return function(testStr) {
+ return (startsWith.toLowerCase() === testStr[0].toLowerCase());
 }
     
     // YOUR CODE ABOVE HERE //
@@ -79,9 +75,9 @@ console.log(test2('lx57bzw'));
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+      return function(testStr) {
+ return (endsWith.toLowerCase() === testStr[testStr.length - 1].toLowerCase());
+}
     
     // YOUR CODE ABOVE HERE //
 }
@@ -95,13 +91,15 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+//create a result variable with the initial vlaue of an array. 
+let result = [];  
+//return a function of a for loop that iterates through the given string parameters, and modifies the value
+for (var i = 0; i < strings.length; i++) {
+    result.push(modify(strings[i]));
+}return result;
+
     // YOUR CODE ABOVE HERE //
 }
-
 /** 
  * Given an Array of Strings and a Function designed to test the String in some 
  * way and return a Boolean on whether it passed, return true if ALL Strings pass the test.
@@ -113,10 +111,16 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    let result;   
+    for (var i = 0; i < strings.length; i++) {
+        if (test(strings[i]) === false) {
+         return result = false;
+        } 
+        else {
+            result = true;
+        } 
+    }
+    return result;
     // YOUR CODE ABOVE HERE //
 }
 
