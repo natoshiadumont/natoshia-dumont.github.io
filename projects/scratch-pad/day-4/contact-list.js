@@ -94,13 +94,53 @@ function makeContactList() {
             //if false, return the value undefined.
             return undefined;
         },
+            /*
+            4. removeContact(contact): takes a contact object
+             to be removed from the contact-list.*/
         removeContact: function(contact) {
-            
+            //create for loop that searches through the contacts array
+            for (var i = 0; i < contacts.length; i++) {
+                if (contacts[i] === contact) {
+                return contacts.splice(i, 1);
+                }
+                
+            }
         },
+            /* 
+            5.add a printAllContactNames() Function to your makeContactList() factory. 
+            The printAllContactNames() Function should return a String formated 
+            with all the full-names of the separated with a line-break.
+            */
 
+            /*
+            create a printAllContactNames() function
+            */
+        printAllContactNames: function() {
+            //create an empty array named fullNameArray
+            let fullNameArr = '' ;
+            /*create a for loop that pushes the combined
+            first and last name of an object into a fullName array*/
+                for(var i = 0; i < contacts.length; i++) {
+                    //make if contacts[i] <contacts.lenght-2, push with new line
+                    if (i < contacts.length - 1){
+                      //join all the full names, then push into fullName Array
+                    fullNameArr += contacts[i].nameFirst + ' ' + contacts[i].nameLast.concat('\n');   
+                    } 
+                   if (i === contacts.length -1) {
+                     fullNameArr += contacts[i].nameFirst + ' ' + contacts[i].nameLast;   
+                   }
+                }
+                //print the final string
+           return fullNameArr;
+           
+        },
+           
+
+            
+            
     }
 }
-
+//console.log('line\n break!');
 
 
 
