@@ -36,6 +36,18 @@
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
 
+    //assign a variable contact to an object literal; this will be used to contain the contact objects
+    var contact = {};
+    //using dot notation, add id parameter to the contact object
+    contact.id = id;
+    //using dot notations, add nameFirst to the contact object
+    contact.nameFirst = nameFirst;
+    //using dot notaiont, add nameLast parameter to the contact object
+    contact.nameLast = nameLast;
+    
+
+        //return the contact object
+        return contact 
 } 
 
 
@@ -49,7 +61,43 @@ function makeContactList() {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
+        },
+                /*2. addContact(contact): takes a contact object to be added to the 
+        *         contact-list.
+        *      3. findContact(fullName): takes a full-name String, like 'Max Gaudin', and 
+        *         returns the contact object if found in the contacts-list, or, 
+        *         undefined if the fullName does not match any contacts in the list.
+        *      4. removeContact(contact): takes a contact object to be removed from 
+        *         the contact-list.
+        *      5. add a printAllContactNames() Function to your makeContactList() factory. The printAllContactNames() Function should 
+        *         return a String formated with all the full-names of the separated 
+        *         with a line-break.*/
+        //implementd an addContact function that takes parameter of contact
+        addContact: function(newContact) {
+            //use push methood to return newContact to the contacts array
+           return contacts.push(newContact);
+        },
+        //create a function named findContact with a parameter for full name (will enter in a fullName string)
+        findContact: function(fullName) {
+            //use a for loop to iterate through the entire array of object
+                //create a 
+
+            for (var i = 0; i < contacts.length; i++) {
+                //create a string of firstName and lastName property of the contacts object, named firstLast
+                let firstLast = contacts[i]['nameFirst'] + ' ' + contacts[i]['nameLast'];
+                //make a condtional statement testing if firstLast strictly equals fullName
+                if (fullName === firstLast) {
+                //if true, return the object of contacts[i] 
+                    return contacts[i];   
+                }
+            }
+            //if false, return the value undefined.
+            return undefined;
+        },
+        removeContact: function(contact) {
+            
+        },
+
     }
 }
 
@@ -57,7 +105,6 @@ function makeContactList() {
 
 
 // YOUR CODE GOES ABOVE HERE //
-
 
 
 
