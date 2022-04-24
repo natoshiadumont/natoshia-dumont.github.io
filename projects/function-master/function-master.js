@@ -21,15 +21,15 @@ return (Object.keys(object)).join(' ');
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function valuesToString(object) {
-for (var i = 0; i < Object.values(object)[i].length; i++){
-//create an empty string named results
-var results = '';
-if (typeof Object.values(object)[i] === 'string') {//work on this
-     results += Object.values(object)[i];
-    }
-    } return results;
-    }
+function valuesToString(obj) {
+var result = '';
+  for (var key in obj){
+    if (typeof obj[key] === 'string') {
+     result +=  obj[key] + ' '; 
+    } 
+} 
+  return result.trim();
+}
 
 
 
@@ -68,6 +68,9 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
+//create a variable named message at the inital value of an empty string
+return 'Welcome ' + object.name + '!';
+// 
 
 }
 
@@ -84,6 +87,7 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
+
 
 }
 
