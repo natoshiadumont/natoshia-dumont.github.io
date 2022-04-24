@@ -51,16 +51,33 @@ if (Array.isArray(collection)) {
 // Function 5 - Capitalize Word //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function capitalizeWord(string) {
-    
+function capitalizeWord(str) {
+ //create variable named capWord with initial value of empty string
+ var capWord = '';
+/*assign value of capWord to str[0].toUpperCase() 
+ (+) str.substring(1, str.length)
+ */
+ capWord = str[0].toUpperCase() + str.substring(1, str.length); 
+ //return capWord
+ return capWord;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 6 - Capitalize All Words /////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function capitalizeAllWords(string) {
-
+function capitalizeAllWords(str) {
+  /*assign initial value of var strArr the str  into an array str's stubsrtings using the .split() method */
+  var strArr = str.split(' ');
+  //create var result with value of an empty string
+ var capAll = '';
+  //using a for loop, iterare through the values of each string in strArr
+  for (var i = 0; i < strArr.length; i++) {
+    //capitalize str[i] and += into capAll string
+    capAll += (strArr[i][0]).toUpperCase() + strArr[i].substring(1, strArr[i].length) + ' ';  
+  } 
+  //return capAll.trim()
+  return capAll.trim();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -68,18 +85,25 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-//create a variable named message at the inital value of an empty string
-return 'Welcome ' + object.name + '!';
+//create an empty string assigned to 
+var message = '';
+message ='Welcome ' + object.name[0].toUpperCase() + object.name.substring(1, object.name.length) + '!';
+return message;
 // 
-
 }
-
 //////////////////////////////////////////////////////////////////////
 // Function 8 - Profile Info /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+//create an empty string named profMessage
+   var profMess = '';
+    /*assign the value of profMess to equal the following message: 
+    'object.name with first character capitalized 
+    + ' is a ' + object.species with first char capitalize */
+    profMessage = object.name[0].toUpperCase() + object.name.substring(1, object.name.length) + ' is a ' + object.species[0].toUpperCase() + object.species.substring(1, object.species.length);
+    //return proMess
+    return profMessage;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -87,16 +111,46 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
-
-}
+var message = '';
+//create an empty string named message
+  var message = '';
+    /*create following condtional statments w/ code blocks:
+    If object does not have a noise key or if its the value of       an empty
+    array, return message there are no noises AND return             message*/
+    if (!object.noises || object.noises.length === 0) {
+      message = 'there are no noises';
+      return message;
+    }
+    else if (object.noises) {
+      for (var i = 0; i < object.noises.length; i++) {
+        message += object.noises[i] + ' ';
+      }return message.trim();
+    }
+    }
 
 //////////////////////////////////////////////////////////////////////
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+//declare an empty array called splitStr
+  var splitStr = [];
+  //using .split method, turn single string into an array of 
+    //substrings
+  splitStr = string.split(' ');
+  console.log(splitStr); //should return an array of substrings
+  //declare a variable named result
+  var result;
+  //use a for loop to iterate over splitStr array
+  for (var i = 0; i < splitStr.length; i++) {
+    //create a condtional statment checking if string[i] matches word str
+    if (splitStr[i].toLowerCase() === word.toLowerCase()) {
+      result = true;
+      return result;
+    } else {
+      result = false;
+    } 
+  }return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -104,7 +158,10 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+//use .push() method to push value of name string into the object.friends array
+  object.friends.push(name);
+  //return the entire object
+  return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -112,7 +169,20 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
+        // a conditonal statement to check if object is NOT undefined and object.friends DOES NOT have a length of zero
+        if (Object.keys(object).length !== 0 && object.friends.length !== 0) {
 
+            //use a for loop to iterate over the object.friends array
+            for (var i = 0; i < object.friends.length; i++) {
+                //create a conditional statment that if object[i] === name, return result = true
+                if (object.friends[i].toUpperCase() === name.toUpperCase()) {
+                    return true;
+                }
+            }     
+            
+        }
+        //otherwise, return false
+        return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -120,7 +190,30 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
+ //create a variable of possibleFriends as an empty array
+  var possibleFriends = [];
+  //create a variable named missing assigned to an empty array.
+  var alreadyFriends = [];
+  //iterate through array[key] with for in loop to push values of names that are 
+  //NOT equal to the given name
+  for (var key in array) {
+    
+    if (array[key].name === name) {
+      //push key values into possibleFriends Array 
+      alreadyFriends = array[key].friends;
+    }  
+    //esle if array[key].name !== name
+    else if (array[key].name !== name) {
+      //push key values into possibleFriends array
+      possibleFriends.push(array[key].name);
+    }
+  }
 
+  //create variable named notFriends with the value comparing the difference
+  //between possibleFriends and alreadyFriends
+  var notFriends = possibleFriends.filter(x => !alreadyFriends.includes(x));
+  //return the value of notFriends
+  return notFriends;
 }
 
 //////////////////////////////////////////////////////////////////////
