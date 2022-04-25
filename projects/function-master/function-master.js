@@ -220,8 +220,22 @@ function nonFriends(name, array) {
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function updateObject(object, key, value) {
-
+function updateObject(object, testKey, value) {
+    //make a for-in loop iterating over keys in object
+    for (var key in object) {
+      //create if statment for if key already exists in array
+      if (key === testKey) {
+        //replace the matching object key's value with the testKey
+        object[key] = value;
+      }
+      //create if statme to test if key exists in object
+      if (!(testKey in object)) {
+        object[testKey] = value;
+      }
+    } 
+    return object;
+    //function named change value that changes a given value 
+    //if key exists in the object
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -229,15 +243,34 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
-}
+    //make a for-in loop iterating over keys in object
+    for (var key in object) {
+      //iterate through array values w/ for loop
+      for (var i = 0; i < array.length; i++) {
+        //create if statment to test if array[i]//=== key
+        if (array[i] === key); {
+          //delete the given key property
+          delete object[(array[i])];
+        }
+        
+      }
+      
+    }
+    //create a for loop
+   
+    return object;
+  }
 
 //////////////////////////////////////////////////////////////////////
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+  //create an empty array named arrDedup; 
+  var arrDedup = [];
+  //assign the value of new Set to create new array only returning unique values from array
+  arrDedup = [...new Set (array)];
+  return arrDedup;
 }
 
 //////////////////////////////////////////////////////////////////////
