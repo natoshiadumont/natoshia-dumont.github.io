@@ -16,3 +16,15 @@
 8) in terminal =>   **os install => to install a new file/project into the workspace
                     **os test => to test your code using the opspark tool (Command + C to exit testing)
                     **os submit => submit your code to greenlight (check your progress on greenlight)
+
+## How to Access Lodown Director
+1) Go to File > Open File > make search bar look like this: /workspace/
+2) Select lodown
+3) Select index.js
+
+# How to Push to Lodown Repository
+1) in terminal -> cd ..
+2) in terminal -> cd lodown
+3) in terminal -> git add -A
+4) in terminal -> git commit -m 'description'
+5) in terminal -> git push
