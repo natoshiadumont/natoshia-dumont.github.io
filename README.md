@@ -28,3 +28,7 @@
 3) in terminal -> git add -A
 4) in terminal -> git commit -m 'description'
 5) in terminal -> git push
+
+## How to Test Let's Get Functional
+1) cd .. into workspace
+2) copy code from line 19 into terminal > press enter

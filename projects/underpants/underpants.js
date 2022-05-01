@@ -3,6 +3,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
+// const { keyBy, result } = require("lodash");
+
+// const { result } = require("lodash");
+
 var _ = {};
 
 
@@ -164,7 +168,22 @@ _.last = function(array, number) {
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
+_.indexOf = function(array, value) {
+    //declare a variable named result 
+    let result;
+    //make a for loop to iterate over the given array
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            result = i;
+            return result;
+        }
+        //otherwise, result is - 1
+        else {
+          result = -1;
+        }
+    }
+    return result;
+}
 
 /** _.contains
 * Arguments:
@@ -180,7 +199,9 @@ _.last = function(array, number) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(array, value) {
+    return array.includes(value) ? true: false   
+}
 
 /** _.each
 * Arguments:
@@ -197,7 +218,25 @@ _.last = function(array, number) {
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
+//create a function _.each with collection and func as arguments
+_.each = function(collection, func){
+    //declare a variable named result
+    var result;
 
+    //determine if collection is an array, conditional statment
+    if (Array.isArray(collection) === 'true') {
+        //itterate through the values of the array
+        for (var i = 0; i < collection.length; collection++) {
+            //for each iteration, 
+            func(collection[i], i, collection);
+        }
+    }
+    else {
+        for (var key in collection) {
+            func(collection[key], key, collection);
+        }
+    }
+    }
 
 /** _.unique
 * Arguments:
@@ -208,6 +247,7 @@ _.last = function(array, number) {
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
 
 
 /** _.filter
@@ -225,6 +265,23 @@ _.last = function(array, number) {
 * Extra Credit:
 *   use _.each in your implementation
 */
+//create function_.filter that takes in an array and a function as arguments
+_.filter = function(array, func) {
+    //declare a variable newArray with initial value of array literal
+    var newArray = [];
+    //make variable callFunc call function for each element in array passing the aruments (element, its index, array)
+    
+    //declare variable newArrray as an empty array
+    //iterate though the values in callFunc
+    for (var i = 0; i < callFunc.length; i++){
+     var callFunc = [_.each(array, func)];   
+        if (callFunc[i] === 'true') {
+            newArray =+ (callFunc[i]);
+        }
+    }
+    return newArray;
+    
+}
 
 
 /** _.reject
@@ -352,7 +409,28 @@ _.last = function(array, number) {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+_.reduce = function(array, func, seed){
+    //determine if NO see was passed into the function
+    if (seed === undefined) {
+        //assing see the first value in the input array
+        seed = array[0];
+        for (let i = 1; i < array.length; i++) {
+            //reassign seed to the result of calling the 
+            //input function on the current value
+            //of seed, the current indez, and the collection
+        
+            seed = func(seed, array[i], i, array);
+        }
+    }
+    else {
+        for (let i = 0; i < array.length; i++) {
+            seed = func(seed, array[i], i, array);
 
+        }
+    }
+    return seed;        
+    // else it was
+}
 
 /** _.extend
 * Arguments:
