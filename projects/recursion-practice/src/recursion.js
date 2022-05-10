@@ -116,11 +116,24 @@ return output;
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+
 var exponent = function(base, exp) {
+  //base- if exp = 0, return 1, if exp = 1, return base
   if (exp === 0){
   return 1;  
   }
-  
+  else if (exp === 1) {
+    return base;
+  }
+//recursion: return base exponent(base, exp - 1)
+//create a variable named result assigned to base * exponent (base, exp - 1)
+if (exp < 0) {
+  return 1 / (exponent(base, -exp));
+}
+else {
+return base * (exponent(base, exp - 1));   
+}
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -128,14 +141,47 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //base: if n = 1, return false; if n = 0, return true
+  if (n === 1) {
+    return true;
+  }
+  else if (n === 0) {
+    return false;
+  }
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  // base: stop when string.length <= 1 an return result and return string
+   if(string.length <= 1){
+    return string;
+  }
+  //recursion: return the last character of the string, then call back the function, with substr before the last value of the string,
+  
+  return string.charAt(string.length - 1) + reverse(string.substring(0, string.length - 1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toUpperCase();
+  //BASE 
+  //if string is only one character or empty string, return true
+  if (string.length === 1 || string === ''){
+    return true;
+  }
+  //if string is two characters, return boolean of strict comparison
+  if (string.length === 2) {
+    return string.charAt(0) === string.charAt(1);  
+  }
+  //RECURSION
+  // If first and last characters do not match
+  if ((string.charAt(0)) !== (string.charAt(string.length - 1))) {  
+    //immediately return false
+    return false;
+  }
+  //return function, trimmed to remove any empty space
+  return palindrome(string.substring(1, string.length -1).trim()); 
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -150,6 +196,29 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if(x === 0 || y === 0) {
+    return 0;
+  }
+  if (y ===  1) {
+    return x;
+  }
+  if (y === -1) {
+    return -x;
+  }
+  
+  if (x > 0 && y > 0) {
+   return x + multiply(x, y - 1); 
+  }
+  else if (x < 0 && y < 0) {
+    console.log('iterating');
+    return -x - multiply(-x, y + 1);
+  }
+  else if (x < 0) {
+    return x + multiply(x, y - 1);
+  }
+  else if (y < 0) {
+    return -x + multiply(x, y + 1);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -171,32 +240,99 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  //base if (str1 === 1 || str2 === 1), return str1 === str2
+  if (str1.length === 1 || str2.length === 1) {
+    return str1 === str2;
+  }
+  //if str1 or str2 are an empty string, return true
+  if (str1 === '' || str1 === '') {
+    return str1 === str2;
+  }
+  //determine if first element of string is the same value
+  if (str1[0] === str2[0]) {
+    //if condtion is true return function call, splicing off the remaining string after index 0
+    return compareStr(str1.slice(1), str2.slice(1));
+  }
+  //otherwise, return the boolean false
+  else {
+    return false;
+  }
 };
-
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
-};
-
+var createArray = function(str, output = []){
+  //base- once array's length equals 1, return array[0];
+  if (str === ''){
+    return output;
+    }
+    
+    //recursion- push str[0] into output, then return the function with str.slice(1)
+    output.push(str[0]);
+    createArray(str.slice(1), output)
+    return output;
+  };
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, output = []) {
+   //base- once array's length equals 1, return array[0];
+   if (array.length === 1){
+    return output.unshift(array[0]);
+    }
+    
+    //recursion- push str[0] into output, then return the function with str.slice(1)
+    output.unshift(array[0]);
+    reverseArr(array.slice(1), output);
+    return output;
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, output = []) {
+  //base - once output length is equal to length.length, return output
+  if (output.length === length) {
+    return output;
+  }
+
+  //recurssion- push value into length, calls builtList, then return output
+  output.push(value);
+  buildList(value, length, output);
+  return output;
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
-};
+var countOccurrence = function(array, value, count = 0) {
+  if (array.length === 0) {
+    return count; 
+   }
+   /*recurrsion- determine if array[0] equals value
+   , if so add 1 to count, then call function with first value of array */
+   
+   if (array[0] === value){
+     console.log('iterating');
+     count++;
+     return countOccurrence(array.splice(1), value, count)
+   }
+   else{
+   return countOccurrence(array.splice(1), value, count); 
+   }
+ };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback) {
+var rMap = function(array, callback, newArray = []) {
+  
+  //base- if array length is equal to zero, return, 
+  if (array.length === 1) {
+    return newArray.push(callback(array[0]));
+  }
+  /*recurssion- push value method to add callback function value using array[0] as an argument into output,
+   then call countOccurrence function, removing array[i] (array.splice(1), value ouput)*/
+   newArray.push(callback(array[0]));
+   rMap(array.slice(1), callback, newArray);
+   return newArray;
+
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -204,6 +340,7 @@ var rMap = function(array, callback) {
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+
 };
 
 // 22. Write a function that counts the number of times a value occurs in an object.
@@ -223,15 +360,19 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
-var fibonacci = function(n) {
+var fibonacci = function(n, fib = []) {
 };
 
 // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
 // [0,1,1,2,3,5,8,13,21]
+
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, fib = [0, 1,]) {
+  //create an array named fib that are the values of the fibonacci sequence
+  fib.length = fib[fib.length - 1] + fib[fib.length - 2];
+  
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
