@@ -370,20 +370,61 @@ var fibonacci = function(n, fib = []) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n, fib = [0, 1,]) {
-  //create an array named fib that are the values of the fibonacci sequence
-  fib.length = fib[fib.length - 1] + fib[fib.length - 2];
+  //create a fib parameter that has a default value of [0, 1]
+
+  //during each function call, push value into fib 
+  //that is the sum of the current index and previous index
+  fib.push(fib[fib.length - 1] + fib[fib.length - 2])
   
+  //BASE
+  //if n === 0, return fib[0];
+  if (n === 0) {
+    return fib[0];
+  }
+  //else if n is less than 0, return null
+  else if (n < 0) {
+    return null;
+  }
+  
+  //RECURSION
+  //using n as a counter,return function with n - 1
+  //which will end at base cases until it meets base value
+  if (n > 0){
+    return nthFibo(n - 1, fib.slice(1));
+  }
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, output = []) {
+   //if input's length is 1, return input[0]
+   if (input.length === 1){
+    return output.push((input[0].toUpperCase()));
+  } 
+  //reccursion
+  //push first index of input into output
+  output.push(input[0].toUpperCase()); 
+  
+  capitalizeWords(input.splice(1), output)
+  //call capitalizeWords function with first index of input removed and the updated output
+  return output;  
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+var capitalizeFirst = function(array, output = []) {
+  array[0] = array[0].substring(1, 0).toUpperCase() +  array[0].substring(1);
+  //if input's length is 1, return input[0]
+    if (array.length === 1) {
+      return output.push(array[0]);
+    } 
+    //reccursion
+    //push first index of input into output
+    output.push(array[0]); 
+    capitalizeFirst(array.splice(1), output);
+    //call capitalizeWords function with first index of input removed and the updated output
+    return output;  
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -405,7 +446,25 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
+    console.log(str); 
+    //base
+    //if str === '', return obj
+    if (str.length === 0) {
+      return obj;
+    }
+    //recursion
+    //using Object.keys(), determine if str[0] key already exists in obj 
+    if (Object.hasOwn(obj, str[0]) === false) {
+      //declare str[0] key to the initial value of 1
+      obj[str[0]] = 1;
+      return letterTally(str.substring(1), obj);
+    }
+    else if (Object.hasOwn(obj, str[0]) === true) {
+      //add 1 to the str[0]
+      obj[str[0]] += 1;
+      return letterTally(str.substring(1), obj);
+    }
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -413,7 +472,23 @@ var letterTally = function(str, obj) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
+var compress = function(list, result = []) {
+  //BASE
+  //if list.length === 0, return list
+  if (list.length === 0) {
+    return result;
+  }
+  //RECURSION
+  //if the first element matches it's next element
+  if (list[0] === list[1]){
+    //use splice to return compress(list) with first index value removed
+    // result.push(list[1]);
+    return compress(list.slice(1), result);
+  }
+  else {
+    result.push(list[0]);
+    return compress(list.slice(1), result);
+  }
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -425,26 +500,125 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, result = []) {
+    //BASE 
+  //if array.length === 0, return result
+  if (array.length === 0) {
+    return result;
+  }
+  
+  //RECURSION
+  //if the first element matches it's next element
+  if (array[0] === 0 && array[1] === 0){
+    /*use splice to return compress(array.slice(1))
+    with first index value removed*/ 
+    return minimizeZeroes(array.slice(1), result);
+  }
+  else {
+    result.push(array[0]);
+    return minimizeZeroes(array.slice(1), result);
+  }
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, result = []) {
+    
+  //BASE
+  //if array length is equal to 0, return result
+  if (array.length === 0) {
+    return result;
+  }
+  //remove first array value if array[0] equals zero
+  if (array[0] === 0) {
+    return alternateSign(array.slice(1), result);
+  }
+  
+  //RECURSION
+  //if result.length / 2 does not have a remainder:
+  if (result.length % 2 === 0) {
+    // 1a. if array[0] is less than 0,
+    // push negative array[0] into result
+    if (array[0] < 0) {
+      result.push(-(array[0]));
+    }
+    // 1b. else if array[0] is greater than 0, return
+    // push original value of array[0] into result
+    else if (array[0] > 0) {
+      result.push(array[0]);
+     // 2. return function, slicing out the first value of array
+     
+    }
+    return alternateSign(array.slice(1), result);
+  }
+ 
+  // else if result.length / 2 has a remainder:
+  else if (result.length / 2 !== 0) {
+    // 1a. if array[0] is less than 0,
+    // push original value into result
+    if (array[0] < 0) {
+      result.push(array[0]);
+    }
+    // 1b. else if array[0] is greater than zero,
+    // push negative array[0] into result
+    else if (result.length / 2 > 0) {
+      result.push(-(array[0]));      
+    } 
+  }
+  return alternateSign(array.slice(1), result);
+
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, newArray = str.split(' '), output = []) {
+  //create object that references all 
+  //one digit string number values to its text form
+  var textForm = {
+    '0': 'zero',
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+    '6': 'six',
+    '7': 'seven',
+    '8': 'eight',
+    '9': 'nine'
+  };
+  
+  //BASE
+  //if newArray length is 0, return joined output with spaces (this will convert array into a single string)
+  if (newArray.length === 0){
+    return output.join(' ');
+  }
+  
+  //RECURSION
+  //if str[0] is a number of a number, return 
+  //number value referencing number as index of    //textForm
+  if (textForm.hasOwnProperty(newArray[0]) === true) {
+    //push textForm[newArray[0]]
+    output.push(textForm[newArray[0]]);
+    //return called function without first value     //newArray, using slice method
+    return numToText(str, newArray.splice(1), output);
+  }
+  //else newString[0] is not the string of a number,     //push value into ouput array
+  else {
+    output.push(newArray[0]);
+    //return called function without newString[0] 
+    //using slice method
+    return numToText(str, newArray.splice(1), output);
+  }  
 };
 
 // *** EXTRA CREDIT ***
 
 // 36. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
+
 };
 
 // 37. Write a function for binary search.
