@@ -10,7 +10,7 @@ function flatten() {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
+function loop( start, stop, update, action) {
 
 }
 
@@ -26,8 +26,30 @@ function every() {
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
+function dominantDirection(string) {
+  //replae the spaces in the string with empty strings
+  var newStr = string.replace(/\s/g, ''); //'Hellworld
+  //create arrays to store ltr and rtl scripts
+  let ltr = [];
+  let rtl = [];
+  //iterate through newStr
+  for (let i = 0; i < newStr.length; i++) {
+    let scriptName = characterScript(newStr.charCodeAt(i));
+    //determine if scriptName is NOT null
+    if(scriptName !== null) { //if not null, it must be a script object
+      if (scriptName.direction) === 'ltr' {
+        ltr.push(scriptName);
+      }
+      else {
+          rtl.push(scriptName);
 
+        }
+      }
+
+    }
+    if (ltr.length > rtl.length) {}
+    
+  }
 }
 
 // /////////////////////////////////////////////////////////////////////////////

@@ -2,18 +2,42 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end) {
-  // //base- if start and end are the same, return []
-  // if (start === end) {
-  //   return [];
-  // }
-  //   //recursion
-  //   //create variable result with array literal
-  // result.push(start[i]);
-  // return result += range(start.slice(1), end);
+function range(start, end, step, output = []) {
+  //base
+  //if start equals
+   if (start === end) {
+    return output;
+  }
+  if (start === end - 1 || start === end + 1){
+    output.push(start);
+    output[output.length] = end;
+    return output;
+  } 
 
+ 
+  //recursion
+  //determine if step is defined
+  if (step > 0) {
+    output.push(start);
+    return range(start + step, end, step, output);
+  }
+  //determine if start is less than end
+  if (start < end) {
+    //push start into output array
+     output.push(start);
+    //return range with start + 1
+    return range(start + 1, end, output);
+  }
+  //determine if start is greater than end
+  if (start > end) {
+    //push end inot oupt array
+    output.push(start);
+    //return range with end - 1
+    return range(start - 1, end, output);
+  }
 }
-
+console.log(range(5, 8));
+console.log(range(9, 5));
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
