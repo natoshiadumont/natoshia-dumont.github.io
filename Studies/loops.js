@@ -121,14 +121,14 @@
    */
 
    //EXAMPLE 2: Looping over an object to access it's property values
-   const greetings = {
+   const sayHello = {
       english: 'hello',
       spanish: "hola",
       french: "salut"
     };
     
-    for (let key in greetings) {
-      console.log(capitals[key]);
+    for (let key in sayHello) {
+      console.log(sayHello[key]);
     }
    /*when this loop runs, it will print the following:
    'hello'
