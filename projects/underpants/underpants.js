@@ -3,14 +3,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-// const { result } = require("lodash");
-
-// const { result } = require("lodash");
-
-// const { keyBy, result } = require("lodash");
-
-// const { result } = require("lodash");
-
 var _ = {};
 
 
@@ -97,7 +89,7 @@ _.typeOf = function(value) {
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 _.first = function(array, number) {
-    //creat an array literal assigned to name result
+    //create an array literal assigned to name result
     var result = [];
     //iterate through the array using i < array[number] to stop iteration 
     for (var i = 0; i < array.length - 1; i++) {
@@ -580,7 +572,6 @@ _.reduce = function(array, func, seed){
         }
     }
     return seed;        
-    // else it was
 }
 
 /** _.extend
@@ -598,8 +589,8 @@ _.reduce = function(array, func, seed){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 //declare extend function with params; object1, object2
-_.extend = function(data, ...obj) {
-    return Object.assign(data, ...obj);
+_.extend = function(firstObj, ...obj) {
+    return Object.assign(firstObj, ...obj);
 }
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
